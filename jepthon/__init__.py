@@ -15,8 +15,8 @@ StartTime = time.time()
 JMVERSION = "5.2.0"
 
 
-if Config.UPSTREAM_REPO == "jepthoniq":
-    UPSTREAM_REPO_URL = "https://github.com/jepthoniq/jep"
+if Config.UPSTREAM_REPO == "cr":
+    UPSTREAM_REPO_URL = "https://github.com/devbarlo/cr"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
