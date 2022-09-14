@@ -22,7 +22,7 @@ from ..sql_helper.global_collection import (
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from .pluginmanager import load_module
 from .tools import create_supergroup
-LOGS = logging.getLogger("jepthon")
+LOGS = logging.getLogger("devbarlo")
 cmdhr = Config.COMMAND_HAND_LER
 bot = jepthon
 async def setup_bot():
@@ -33,7 +33,7 @@ async def setup_bot():
         await jepthon.connect()
         config = await jepthon(functions.help.GetConfigRequest())
         for option in config.dc_options:
-            if option.ip_address == jepthon.session.server_address:
+            if option.ip_address == cr.session.server_address:
                 if jepthon.session.dc_id != option.id:
                     LOGS.warning(
                         f"⌯︙معرف ثابت في الجلسة من {jepthon.session.dc_id}"
@@ -63,8 +63,8 @@ async def startupmessage():
             Config.CATUBLOGO = await jepthon.tgbot.send_file(
                 BOTLOG_CHATID,
                 "https://telegra.ph/file/4ed13bf6216c070e3cc48.jpg",
-                caption="⌯︙**بــوت جيبثون يـعـمـل بـنـجـاح**  ✅ \n⌯︙**قـنـاة الـسـورس**  :  @Jepthon",
-                buttons=[(Button.url("كروب جيبثون", "https://t.me/JepthonSupport"),)],
+                caption="⌯︙**بــوت كرستين يـعـمـل بـنـجـاح**  ✅ \n⌯︙**قـنـاة الـسـورس**  :  @PP_G3",
+                buttons=[(Button.url("كروب سورس كرستين", "https://t.me/GRO_UP_1"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -82,7 +82,7 @@ async def startupmessage():
             message = await jepthon.get_messages(msg_details[0], ids=msg_details[1])
             text = (
                 message.text
-                + "\n\n**⌯︙اهلا وسهلا لقد قمت باعاده تشغيل بـوت جيبثون تمت بنجاح**"
+                + "\n\n**⌯︙اهلا وسهلا لقد قمت باعاده تشغيل بـوت كرستين تمت بنجاح**"
             )
             
             if gvarstatus("restartupdate") is not None:
@@ -104,8 +104,8 @@ async def mybot():
     rz_ment = f"[{JEPTH_USER}](tg://user?id={The_razan})"
     f"ـ {rz_ment}"
     f"⪼ هذا هو بوت خاص بـ {rz_ment} يمكنك التواصل معه هنا"
-    starkbot = await jepthon.tgbot.get_me()
-    perf = "[ جيبثون ]"
+    starkbot = await cr.tgbot.get_me()
+    perf = "[ كرستين ]"
     bot_name = starkbot.first_name
     botname = f"@{starkbot.username}"
     if bot_name.endswith("Assistant"):
@@ -163,13 +163,13 @@ async def add_bot_to_logger_group(chat_id):
             )
         except Exception as e:
             LOGS.error(str(e))
-#by @Jepthon بس اشوفك خامطه للكود اهينك وافضحك 
+#by @PP_G3 بس اشوفك خامطه للكود اهينك وافضحك 
 
-Jepthon = {"@Jepthon", "@JepthonSupport", "@Story_lMl10l"}
+Jepthon = {"@PP_G3", "@GRO_UP_1", "@cr_source"}
 async def saves():
-    for lMl10l in Jepthon:
+    for lMl10l in devbarlo:
         try:
-             await jepthon(JoinChannelRequest(channel=lMl10l))
+             await jepthon(JoinChannelRequest(channel=PP_G3))
              time.sleep(6)
         except OverflowError:
             LOGS.error("ابلغ مطورين السورس Getting Flood Error from telegram. Script is stopping now. Please try again after some time.")
@@ -179,7 +179,7 @@ async def load_plugins(folder):
     """
     To load plugins from the mentioned folder
     """
-    path = f"jepthon/{folder}/*.py"
+    path = f"cr/{folder}/*.py"
     files = glob.glob(path)
     files.sort()
     for name in files:
@@ -194,7 +194,7 @@ async def load_plugins(folder):
                         try:
                             load_module(
                                 shortname.replace(".py", ""),
-                                plugin_path=f"jepthon/{folder}",
+                                plugin_path=f"cr/{folder}",
                             )
                             break
                         except ModuleNotFoundError as e:
@@ -203,9 +203,9 @@ async def load_plugins(folder):
                             if check > 5:
                                 break
                 else:
-                    os.remove(Path(f"jepthon/{folder}/{shortname}.py"))
+                    os.remove(Path(f"cr/{folder}/{shortname}.py"))
             except Exception as e:
-                os.remove(Path(f"jepthon/{folder}/{shortname}.py"))
+                os.remove(Path(f"cr/{folder}/{shortname}.py"))
                 LOGS.info(
                     f"⌯︙غير قادر على التحميل {shortname} يوجد هناك خطا بسبب : {e}"
                 )
@@ -240,7 +240,7 @@ async def verifyLoggerGroup():
                 + str(e)
             )
     else:
-        descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @Jepthon"
+        descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @PP_G3"
         photobt = await jepthon.upload_file(file="JepIQ/razan/resources/start/Jepthon.jpg")
         _, groupid = await create_supergroup(
             "مجموعة اشعارات جيبثون ", jepthon, Config.TG_BOT_USERNAME, descript, photobt
@@ -269,16 +269,16 @@ async def verifyLoggerGroup():
                 "⌯︙حدث استثناء عند محاولة التحقق من PM_LOGGER_GROUP_ID.\n" + str(e)
             )
     else:
-        descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @Jepthon"
+        descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @PP_G3"
         photobt = await jepthon.upload_file(file="JepIQ/razan/resources/start/Jepthon2.jpg")
         _, groupid = await create_supergroup(
-            "مجموعة التخزين", jepthon, Config.TG_BOT_USERNAME, descript, photobt
+            "مجموعة التخزين", cr, Config.TG_BOT_USERNAME, descript, photobt
         )
         addgvar("PM_LOGGER_GROUP_ID", groupid)
         print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
         flag = True
     if flag:
         executable = sys.executable.replace(" ", "\\ ")
-        args = [executable, "-m", "jepthon"]
+        args = [executable, "-m", "cr"]
         os.execle(executable, *args, os.environ)
         sys.exit(0)
