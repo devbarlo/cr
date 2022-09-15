@@ -1,79 +1,86 @@
+
 import sys
-
-import jepthon
-from jepthon import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
-
+import userbot
+from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
+from telethon import functions
 from .Config import Config
 from .core.logger import logging
-from .core.session import jepthon
-from .utils import (
-    add_bot_to_logger_group,
-    ipchange,
-    load_plugins,
-    setup_bot,
-    startupmessage,
-    verifyLoggerGroup,
-    saves,
+from .core.session import iqthon
+from .utils import add_bot_to_logger_group, load_plugins, setup_bot, startupmessage, verifyLoggerGroup
+LOGS = logging.getLogger(
+"تليثون السلطان"
 )
-
-LOGS = logging.getLogger("cr")
-
-print("cr ar ©")
-
+print(
+userbot.__copyright__)
+print(
+"المرخصة بموجب شروط " + userbot.__license__)
 cmdhr = Config.COMMAND_HAND_LER
-
 try:
-    LOGS.info("Starting jepthon")
-    jepthon.loop.run_until_complete(setup_bot())
-    LOGS.info("TG Bot Startup Completed")
+    LOGS.info(
+"بدء تنزيل تليثون السلطان"
+)
+    iqthon.loop.run_until_complete(
+setup_bot())
+    LOGS.info("بدء تشغيل البوت")
 except Exception as e:
-    LOGS.error(f"{str(e)}")
+    LOGS.error(
+f"{str(e)}")
     sys.exit()
-
-
 class CatCheck:
     def __init__(self):
         self.sucess = True
-
-
 Catcheck = CatCheck()
-
-
 async def startup_process():
-    check = await ipchange()
-    if check is not None:
-        Catcheck.sucess = False
-        return
     await verifyLoggerGroup()
     await load_plugins("plugins")
     await load_plugins("assistant")
-    print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-    print("⌯︙بـوت كرستين يعـمل بـنجاح ")
     print(
-        f"يجـب تفـعيل وضع الأنلايـن ثم أرسـل {cmdhr}فحص لـرؤيـة اذا كـان البوت شـغال\
-        \nللمسـاعدة تواصـل  https://t.me/GRO_UP_1"
-    )
-    print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
+f"<b> ⌔︙ اهلا بك لقد نصبت تليثون العرب بنجاح 🥁 اذهب الى قناتنا لمعرفة المزيـد ⤵️. </b>\n CH : https://t.me/cr_source "
+)
     await verifyLoggerGroup()
-    await saves()
     await add_bot_to_logger_group(BOTLOG_CHATID)
     if PM_LOGGER_GROUP_ID != -100:
         await add_bot_to_logger_group(PM_LOGGER_GROUP_ID)
     await startupmessage()
     Catcheck.sucess = True
     return
-
-
-
-jepthon.loop.run_until_complete(startup_process())
-
+iqthon.loop.run_until_complete(startup_process())
+def start_bot():
+  try:
+    iqthon.loop.run_until_complete(
+iqthon(
+functions.channels.JoinChannelRequest
+(
+"uui9u"
+))
+)
+    iqthon.loop.run_until_complete(
+iqthon(
+functions.channels.JoinChannelRequest("cr_source"
+)
+))
+    iqthon.loop.run_until_complete(
+iqthon(
+functions.channels.JoinChannelRequest(
+"cr_source"
+)))
+  except Exception as e:
+    print(e)
+    return False
+Checker = start_bot()
+if Checker == False:
+    print(
+"عذرا لديك حظر مؤقت حاول التنصيب غدا او بعد 24 ساعة"
+)
+    iqthon.disconnect()
+    sys.exit()
 if len(sys.argv) not in (1, 3, 4):
-    jepthon.disconnect()
+    iqthon.disconnect()
 elif not Catcheck.sucess:
     if HEROKU_APP is not None:
         HEROKU_APP.restart()
 else:
     try:
-        jepthon.run_until_disconnected()
+        iqthon.run_until_disconnected()
     except ConnectionError:
         pass
