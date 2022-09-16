@@ -7,7 +7,7 @@ from .sql_helper.globals import addgvar, delgvar, gvarstatus
 version = "7.3"
 license = "GNU Affero General Public License v3.0"
 author = "<t.me/cr_source>"
-copyright = "TeleOniOn AR (C) 2022 - 2023  " + author
+copyright = "devbarlo (C) 2022 - 2023  " + author
 iqthon.version = version
 iqthon.tgbot.version = version
 LOGS = logging.getLogger("cr_source")
