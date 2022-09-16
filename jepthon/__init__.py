@@ -1,4 +1,4 @@
-mport time
+import time
 import heroku3
 from .Config import Config
 from .core.logger import logging
@@ -14,7 +14,7 @@ LOGS = logging.getLogger("cr_source")
 bot = iqthon
 StartTime = time.time()
 catversion = "7.2"
-if Config.UPSTREAM_REPO == "TeleOniOn":
+if Config.UPSTREAM_REPO == "devbarlo":
     UPSTREAM_REPO_URL = "https://github.com/devbarlo/cr"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
